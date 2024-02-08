@@ -1,11 +1,11 @@
 
-import { useEffect } from "react";
+
 import Feature from "../../components/Feature/Feature";
 import Banner from "../../components/Banner/Banner";
 import { dataFeatures } from "../../data/data"
 
 function Home() {
-    useEffect(() => { document.title = "Argent Bank - Accueil" });
+   
     return (
         <div className="App">
             <Banner />

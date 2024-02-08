@@ -1,15 +1,15 @@
 import { PropTypes } from 'prop-types';
 
 function Feature(props) {
-    const icon = props.icon;
-    const altImg = props.altImg;
-    const textH3 = props.textH3;
-    const textP = props.textP;
+    const ICON = props.icon;
+    const ALT_IMG = props.altImg;
+    const TEXT_H3 = props.textH3;
+    const TEXT_P = props.textP;
     return (
         <div className="feature-item">
-            <img src={icon} alt={altImg} className="feature-icon" />
-            <h3 className="feature-item-title">{textH3}</h3>
-            <p>{textP}</p>
+            <img src={ICON} alt={ALT_IMG} className="feature-icon" />
+            <h3 className="feature-item-title">{TEXT_H3}</h3>
+            <p>{TEXT_P}</p>
         </div>
     )
 }
