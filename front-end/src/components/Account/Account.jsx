@@ -1,35 +1,27 @@
 
 import { PropTypes } from 'prop-types';
 
-function Account(props) {
-    const ACCOUNT_TITLE = props.accountTitle;
-    const ACCOUNT_AMOUNT = props.accountAmount;
-    const ACCOUNT_AMOUNT_DESCRIPTION = props.accountAmountDescription;
-
-    const ACCOUNT_AMOUNT_FORMAT = amountFormat(ACCOUNT_AMOUNT);
-
+const Account = props => {
     return (
-        <section className="account">
-            <div className="account-content-wrapper">
-                <h3 className="account-title">Argent Bank {ACCOUNT_TITLE}</h3>
-                <p className="account-amount">${ACCOUNT_AMOUNT_FORMAT}</p>
-                <p className="account-amount-description">{ACCOUNT_AMOUNT_DESCRIPTION} Balance</p>
-            </div>
-            <div className="account-content-wrapper cta">
-                <button className="transaction-button">View transactions</button>
-            </div>
-        </section>
+      <section className="account">
+          <div className="account-content-wrapper">
+            <h3 className="account-title">{props.title}</h3>
+            <p className="account-amount">{props.amount}</p>
+            <p className="account-amount-description">{props.description}</p>
+          </div>
+          <div className="account-content-wrapper cta">
+            <button className="transaction-button">View transactions</button>
+          </div>
+      </section>
     )
-}
+  }
+  
 
-function amountFormat(number) {
-    return new Intl.NumberFormat('en-US').format(number);
-}
 
 Account.propTypes = {
-    accountTitle: PropTypes.string,
-    accountAmount: PropTypes.number,
-    accountAmountDescription: PropTypes.string
+    title: PropTypes.string,
+    amount: PropTypes.number,
+    description: PropTypes.string
 }
 
 export default Account;
