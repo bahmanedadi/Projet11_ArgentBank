@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Account from '../../components/Account/Account';
-import auth_service from '../../services/auth.service';
+import auth_service from '../../actions/loginAction';
 
 /**
  * Creates User page component

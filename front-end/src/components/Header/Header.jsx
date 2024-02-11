@@ -1,9 +1,10 @@
 import React from 'react';
+import { logoClick } from '../../actions/loginAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import argentBankLogo from '../../assets/image/argentBankLogo.png';
-import auth_service from '../../services/auth.service';
-import { logoClick } from '../../actions/loginAction';
+import auth_service from '../../actions/loginAction';
+
 
 /**
  * Creates Nav component
