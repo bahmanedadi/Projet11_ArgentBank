@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// Initial login state
+/***  Initial login state ***/
 const loginState = {
   token: localStorage.getItem("token"),
   isAuth: false,
@@ -8,7 +8,7 @@ const loginState = {
   logoClick: null,
 };
 
-// Login slice
+/***  Login slice ***/
 const loginAction = createSlice({
   name: "login",
   initialState: loginState,

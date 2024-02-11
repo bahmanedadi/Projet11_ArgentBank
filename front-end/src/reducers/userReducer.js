@@ -1,9 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// Initial post state
+/***  Initial User state  ***/
 const userState = {
-  // Define the initial state properties for your post entity
-  // Example:
   title: null,
   content: null,
   author: null,
@@ -11,23 +9,21 @@ const userState = {
   error: null,
 };
 
-// Post slice
+/***  User slice  ***/
 const userAction = createSlice({
   name: "post",
   initialState: userState,
   reducers: {
     userSuccess: (state, action) => {
-      // Update state properties based on the action payload
-      // Example:
+      /***  Update state properties based on the action payload  ***/
       state.title = action.payload.body.title;
       state.content = action.payload.body.content;
       state.author = action.payload.body.author;
       state.id = action.payload.body.id;
       state.error = null;
     },
-   userFail: (state, action) => {
-      // Reset state properties and set error based on the action payload
-      // Example:
+    userFail: (state, action) => {
+      /***  Reset state properties and set error based on the action payload ***/
       state.title = null;
       state.content = null;
       state.author = null;
@@ -35,8 +31,8 @@ const userAction = createSlice({
       state.error = action.payload.message;
     },
     userLogout: (state) => {
-      // Reset state properties on logout
-      // Example:
+      /***  Reset state properties on logout ***/
+
       state.title = null;
       state.content = null;
       state.author = null;
@@ -44,8 +40,7 @@ const userAction = createSlice({
       state.error = null;
     },
     usertUpdateSuccess: (state, action) => {
-      // Update state properties for an update success
-      // Example:
+      /***  Update state properties for an update success ***/
       state.title = action.payload.body.title;
       state.content = action.payload.body.content;
       state.author = action.payload.body.author;
@@ -53,8 +48,7 @@ const userAction = createSlice({
       state.error = null;
     },
     userUpdateFail: (state, action) => {
-      // Update state properties for an update failure
-      // Example:
+      /***  Update state properties for an update failure  ***/
       state.title = action.payload.body.title;
       state.content = action.payload.body.content;
       state.author = action.payload.body.author;
