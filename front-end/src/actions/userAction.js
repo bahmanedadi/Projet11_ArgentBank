@@ -1,40 +1,8 @@
+import { createAction } from '@reduxjs/toolkit';
 
-import axios from "axios"
-import { createAction } from '@reduxjs/toolkit'
-
-
-export const loadApiUser = createAction('load-get-user')
-const baseURL = 'http://localhost:3001/api/v1/user/'
-
-export const loadApiUserSuccess = createAction(
-  'get-user-success',
-  (user) => {
-    return {
-      payload: user,
-    }
-  }
-)
-
-export const loadApiUserError = createAction(
-  'get-user-error', (error) => {
-  return {
-    payload: error,
-  }
-})
-export const getUser = (token) => {
-    return (dispatch) => {
-      dispatch(loadApiUser())
-      axios({
-        method: 'POST',
-        url: baseURL + 'profile',
-        headers: { Authorization: `Bearer ${token}` },
-      })
-        .then((response) => {
-          dispatch(loadApiUserSuccess(response.data))
-        })
-        .catch((error) => {
-          dispatch(loadApiUserError(error.message))
-        })
-    }
-  }
-  export const logOut = createAction('logout')
+// Action creators
+export const userSuccess = createAction('post/postSuccess');
+export const userFail = createAction('post/postFail');
+export const userLogout = createAction('post/postLogout');
+export const userUpdateSuccess = createAction('post/postUpdateSuccess');
+export const userUpdateFail = createAction('post/postUpdateFail');

@@ -1,56 +1,52 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from "react-router";
-import { getToken } from '../../actions/loginAction'; // Utilisez exactement la même casse que le nom du fichier
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import auth_service from '../../services/auth.service';
 
-
-function LoginForm() {
-  useEffect(() => { document.title = "Argent Bank - Connexion" });
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const navigate = useNavigate();
-  const dispatch = useDispatch()
-  const message = useSelector((state) => state.getUser.user.status)
-  const rememberMe = document.getElementById("remember-me");
-  useEffect(() => {
-    if (localStorage.length > 0) {
-      navigate('/profile');
-    }
-  })
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    
-    if (email === '' || password === '') {
-      // Gérer le cas où l'email ou le mot de passe est vide
-    } else {
-      dispatch(getToken(email, password,rememberMe))
-      
-    }
+/**
+ * Creates form component
+ * @returns { HTMLElement }
+ */
+const LoginForm = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] =  useState(false);
+  
+  const dispatch = useDispatch();
+  const navigate = useNavigate(); 
+  
+  const token= useSelector((state)=> state.login.token)
+  const error= useSelector((state)=> state.login.error)
+  
+  const submitForm = (e) => {
+    e.preventDefault();
+    dispatch(auth_service.login(email, password, rememberMe));
   }
 
-  if (message === 200) {
-    navigate(`/profile`)
-  }
+  useEffect(()=>{
+    if(token !== null || localStorage.getItem('token') !== null){
+      navigate('/profile')
+    }
+  },[token, navigate])
 
   return (
     <section className="sign-in-content">
-      <i className="fa fa-user-circle sign-in-icon"></i>
-      <h1>Sign In</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="input-wrapper">
-          <label htmlFor="email">Email</label>
-          <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        </div>
-        <div className="input-wrapper">
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        </div>
-        <div className="input-remember">
-          <input type="checkbox" id="remember-me" />
-          <label htmlFor="remember-me">Remember me</label>
-        </div>
-        <button className="sign-in-button" type="submit">Sign In</button>
-      </form>
+      <form onSubmit={(e)=>{submitForm(e)}}>
+      <div className="input-wrapper">
+        <label htmlFor="email">Email</label>
+        <input type="text" id="email" onChange={(e) => { setEmail(e.target.value) }} />
+      </div>
+      <div className="input-wrapper">
+        <label htmlFor="password">Password</label>
+        <input type="password" id="password" onChange={(e) => { setPassword(e.target.value)}} />
+      </div>
+      <div className="input-remember">
+        <input type="checkbox" id="remember-me" onChange={(e) => { setRememberMe(e.target.checked) }}/>
+        <label htmlFor="remember-me">Remember me</label>
+      </div>
+      <button className="sign-in-button" type='submit'>Sign In</button>
+      {error !== null ? <label className='error'>{error}</label>:""}
+    </form>
     </section>
   )
 }

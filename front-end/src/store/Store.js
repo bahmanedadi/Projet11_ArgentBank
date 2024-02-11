@@ -1,12 +1,18 @@
+import { configureStore } from "@reduxjs/toolkit";
+import { loginReducer } from "../reducers/loginReducer";
+import { userReducer } from "../reducers/userReducer";
 
-import { configureStore } from '@reduxjs/toolkit'
-import { userReducer } from '../reducers/userReducer'
-import { tokenReducer} from '../reducers/loginReducer'
-
+/**
+ * Configures store
+ */
 export const store = configureStore({
-  reducer: {
-    token: tokenReducer,
-    getUser: userReducer,
-   
-  },
-})
+    reducer: {
+      login: loginReducer,
+      user: userReducer
+    },
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({
+        serializableCheck: false
+      }),
+  })
+  

@@ -1,52 +1,75 @@
+import { createSlice } from "@reduxjs/toolkit";
 
+// Initial post state
+const userState = {
+  // Define the initial state properties for your post entity
+  // Example:
+  title: null,
+  content: null,
+  author: null,
+  id: null,
+  error: null,
+};
 
-import { createReducer } from '@reduxjs/toolkit'
-// actions imports
-import {
-  loadApiUser,
-  loadApiUserError,
-  loadApiUserSuccess,
-} 
-from '../actions/userAction.js'
+// Post slice
+const userAction = createSlice({
+  name: "post",
+  initialState: userState,
+  reducers: {
+    userSuccess: (state, action) => {
+      // Update state properties based on the action payload
+      // Example:
+      state.title = action.payload.body.title;
+      state.content = action.payload.body.content;
+      state.author = action.payload.body.author;
+      state.id = action.payload.body.id;
+      state.error = null;
+    },
+   userFail: (state, action) => {
+      // Reset state properties and set error based on the action payload
+      // Example:
+      state.title = null;
+      state.content = null;
+      state.author = null;
+      state.id = null;
+      state.error = action.payload.message;
+    },
+    userLogout: (state) => {
+      // Reset state properties on logout
+      // Example:
+      state.title = null;
+      state.content = null;
+      state.author = null;
+      state.id = null;
+      state.error = null;
+    },
+    usertUpdateSuccess: (state, action) => {
+      // Update state properties for an update success
+      // Example:
+      state.title = action.payload.body.title;
+      state.content = action.payload.body.content;
+      state.author = action.payload.body.author;
+      state.id = action.payload.body.id;
+      state.error = null;
+    },
+    userUpdateFail: (state, action) => {
+      // Update state properties for an update failure
+      // Example:
+      state.title = action.payload.body.title;
+      state.content = action.payload.body.content;
+      state.author = action.payload.body.author;
+      state.id = action.payload.body.id;
+      state.error = action.payload.message;
+    },
+  },
+});
 
-import { logOut } from '../actions/userAction.js'
+export const {
+  userSuccess,
+  userFail,
+  userLogout,
+  userUpdateSuccess,
+  userUpdateFail,
+} = userAction.actions;
 
-// REDUCER // ______________________________________________________________
-
-// initial state
-const initialStateUser = {
-  isLoading: false,
-  isLogged: false,
-  user: {},
-  error: '',
-}
-// reducer
-export const userReducer = createReducer(initialStateUser, (builder) => {
-  return builder
-    .addCase(loadApiUser, (draft) => {
-      draft.isLoading = true
-      return
-    })
-    .addCase(loadApiUserSuccess, (draft, action) => {
-      draft.isLoading = false
-      draft.isLogged = true
-      draft.user = action.payload
-      draft.error = ''
-      return
-    })
-    .addCase(loadApiUserError, (draft, action) => {
-      draft.isLoading = false
-      draft.isLogged = false
-      draft.user = {}
-      draft.error = action.payload
-      return
-    })
-    .addCase(logOut, (draft, action) => {
-      draft.isLoading = false
-      draft.isLogged = false
-      draft.user = {}
-      draft.error = action.payload
-      return
-    })
-    
-})
+export const userReducer = userAction.reducer;
