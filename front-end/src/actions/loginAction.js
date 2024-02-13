@@ -1,4 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
+import {userSuccess,userFail} from "../actions/userAction";
 import axios from "axios";
 
 const BASE_URL = "http://localhost:3001/api/v1";
@@ -31,6 +32,16 @@ export const logout = () => (dispatch) => {
     sessionStorage.clear();
     localStorage.removeItem('token')
     dispatch(logoutSuccess());
+}
+export const userProfile = (value_token) => (dispatch) => {
+    const token = localStorage.getItem("token") !== null ? localStorage.getItem("token").slice(1, localStorage.getItem("token").length - 1) : value_token;
+    axios.post(BASE_URL + "/user/profile", { token }, { headers: { "Authorization": `Bearer ${token}` } })
+        .then((response) => {
+            dispatch(userSuccess(response.data))
+        })
+        .catch((err) => {
+            dispatch(userFail(err.response))
+        })
 }
 const auth_service = { login, logout }
 

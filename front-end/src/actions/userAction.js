@@ -21,6 +21,6 @@ export const userProfile = (value_token) => (dispatch) => {
             dispatch(userFail(err.response))
         })
 }
-const auth_service = { login, logout, userProfile }
+const auth_service = { userProfile }
 
 export default auth_service;
