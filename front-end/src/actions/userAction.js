@@ -21,6 +21,21 @@ export const userProfile = (value_token) => (dispatch) => {
             dispatch(userFail(err.response))
         })
 }
+export const updateProfile = (userName, value_token) => (dispatch) => {
+    const token= localStorage.getItem("token") !== null ? localStorage.getItem("token").slice(1,localStorage.getItem("token").length-1) : value_token;
+    axios.put(BASE_URL + "/user/profile",
+        { userName: userName },
+        { headers: { "Authorization": `Bearer ${token}` } 
+    })
+    .then((res)=>{
+        dispatch(userUpdateSuccess(res.data))
+        console.log(res.data)
+    })
+    .catch((err)=>{
+        dispatch(userUpdateFail(err.response))
+    })
+ }
+ 
 const auth_service = { userProfile }
 
 export default auth_service;

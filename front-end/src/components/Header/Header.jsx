@@ -1,9 +1,9 @@
 import React from 'react';
-import { logoClick } from '../../actions/loginAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import argentBankLogo from '../../assets/image/argentBankLogo.png';
 import auth_service from '../../actions/loginAction';
+import { logoClick } from '../../actions/loginAction';
 
 
 /**
