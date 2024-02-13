@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import auth_service from "../../actions/loginAction";
+import auth_service from "../../actions/userAction";
 
 /**
  * Creates form component

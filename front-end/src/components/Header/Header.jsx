@@ -1,9 +1,9 @@
 import React from 'react';
+import { logoClick } from '../../actions/loginAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import argentBankLogo from '../../assets/image/argentBankLogo.png';
-import auth_service from '../../actions/loginAction';
-import { logoClick } from '../../actions/loginAction';
+import auth_service from '../../actions/userAction';
 
 
 /**
@@ -47,7 +47,7 @@ const Header = () => {
           <div className='main-nav-items'>
             <Link className="main-nav-item" to="/profile">
               <i className="fa fa-user-circle"></i>
-              {user.firstName}
+              {user.userName}
             </Link>
             <span className="main-nav-item" onClick={onLogout}>
               <i className="fa fa-sign-out"></i>

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 /***  Initial User state  ***/
 const userState = {
+  firstName: null,
   title: null,
   content: null,
   author: null,
@@ -11,15 +12,17 @@ const userState = {
 
 /***  User slice  ***/
 const userAction = createSlice({
-  name: "post",
+  name: "user",
   initialState: userState,
   reducers: {
     userSuccess: (state, action) => {
-      /***  Update state properties based on the action payload  ***/
+      /***  Update state properties based on the action payload  
       state.title = action.payload.body.title;
       state.content = action.payload.body.content;
       state.author = action.payload.body.author;
       state.id = action.payload.body.id;
+      state.error = null;***/
+      Object.assign(state, action.payload.body); // Mettre à jour les propriétés de l'utilisateur
       state.error = null;
     },
     userFail: (state, action) => {
