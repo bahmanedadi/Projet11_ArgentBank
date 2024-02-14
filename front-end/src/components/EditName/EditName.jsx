@@ -33,20 +33,32 @@ const EditName = () => {
           <h1>{edit ? 'Edit user info' : `Welcome back ${firstName} ${lastName}`}</h1>
           {
               edit ?
-                  <form className='edit-inputs-buttons' onSubmit={submit}>
-                      <div className='edit-inputs'>
-                          <label>User name</label>
-                          <input className='edit-input' onChange={(e) => { setNewUserName(e.target.value) }} placeholder={userName} required />
-                          <label >First name</label>
-                          <input type="text" className='edit-input' placeholder={firstName} disabled />
-                          <label>Last name</label>
-                          <input type="text" className='edit-input' placeholder={lastName} disabled />
-                      </div>
-                      <div className='edit-buttons'>
-                          <button className='edit-button-option' type='submit'>Save</button>
-                          <button className='edit-button-option' onClick={() => { showEdit(false) }}>Cancel</button>
-                      </div>
-                  </form>
+              <form className='edit-inputs-buttons' onSubmit={submit}>
+              <div className='edit-inputs'>
+                <label>
+                  User name
+                  <input
+                    className='edit-input'
+                    onChange={(e) => { setNewUserName(e.target.value) }}
+                    placeholder={userName}
+                    required
+                  />
+                </label>
+                <label>
+                  First name
+                  <input type="text" className='edit-input' placeholder={firstName} disabled />
+                </label>
+                <label>
+                  Last name
+                  <input type="text" className='edit-input' placeholder={lastName} disabled />
+                </label>
+              </div>
+              <div className='edit-buttons'>
+                <button className='edit-button-option' type='submit'>Save</button>
+                <button className='edit-button-option' onClick={() => { showEdit(false) }}>Cancel</button>
+              </div>
+            </form>
+            
                   :
                   <button className="edit-button" onClick={() => { showEdit(true) }}>Edit Name</button>
           }

@@ -9,8 +9,8 @@ const BASE_URL = "http://localhost:3001/api/v1";
 export const userSuccess = createAction('user/userSuccess');
 export const userFail = createAction('user/userFail');
 export const userLogout = createAction('user/userLogout');
-export const userUpdateSuccess = createAction('post/postUpdateSuccess');
-export const userUpdateFail = createAction('post/postUpdateFail');
+export const userUpdateSuccess = createAction('');
+export const userUpdateFail = createAction('user/userUpdateFail');
 
 
 export const userProfile = (value_token) => (dispatch) => {
@@ -34,7 +34,7 @@ export const updateProfile = (userName, value_token) => (dispatch) => {
         {
             headers: { "Authorization": `Bearer ${token}` }
         })
-    console.log("Données envoyées dans la requête PUT :", { userName: userName })
+   
         .then((res) => {
             dispatch(userUpdateSuccess(res.data))
             console.log(res.data)

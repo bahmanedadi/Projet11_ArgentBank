@@ -280,6 +280,47 @@ body {
 	padding: 10px;
 }
 
+
+  .edit-inputs-buttons{
+    display: flex;
+    flex-direction: column;
+    row-gap: .5rem;
+    align-items: center;
+  }
+
+  .edit-inputs{
+    display: flex;
+    flex-direction:column;
+    column-gap: .5rem;
+  }
+
+  .edit-input{
+    border-radius: 5px;
+    border-color: #222;
+    width: 130px;
+    height: 30px;
+    padding-left: .5rem;
+    font-size: 14px;
+  }
+
+  .edit-buttons{
+    display: flex;
+    flex-direction: row;
+    column-gap: .5rem;
+  }
+
+  .edit-button-option{
+    border-radius: 5px;
+    border-color: #00bc77;
+    text-align: center;
+    width: 100px;
+    background-color: #00bc77;
+	color: #fff;
+    height: 30px;
+    border: 1px solid;
+    cursor: pointer;
+  }
+
 .header {
 	color: #fff;
 	margin-bottom: 2rem;

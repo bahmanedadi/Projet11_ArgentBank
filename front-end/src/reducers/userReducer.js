@@ -30,7 +30,6 @@ const userAction = createSlice({
     },
     userLogout: (state) => {
       /***  Reset state properties on logout ***/
-
       state.title = null;
       state.content = null;
       state.author = null;
@@ -39,10 +38,11 @@ const userAction = createSlice({
     },
     userUpdateSuccess: (state, action) => {
       /***  Update state properties for an update success ***/
-      state.title = action.payload.body.title;
+            state.title = action.payload.body.title;
       state.content = action.payload.body.content;
       state.author = action.payload.body.author;
       state.id = action.payload.body.id;
+
       state.error = null;
     },
     userUpdateFail: (state, action) => {
