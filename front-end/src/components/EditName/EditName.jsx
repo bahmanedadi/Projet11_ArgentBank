@@ -14,11 +14,12 @@ const EditName = () => {
 
   const submit = (e) => {
       e.preventDefault();
-      dispatch(updateProfile(newUserName, token)); // Utilisez directement updateProfile ici
-      setNewUserName(''); // Réinitialisez le champ d'entrée du nouveau nom d'utilisateur après la soumission
+      /***  Utilisez directement updateProfile ici ***/
+      dispatch(updateProfile(newUserName, token)); 
+       /***  Réinitialisez le champ d'entrée du nouveau nom d'utilisateur après la soumission ***/
+      setNewUserName('');
       showEdit(false);
   };
-
 
   useEffect(() => {
       if (token !== null) {

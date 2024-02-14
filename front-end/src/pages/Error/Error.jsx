@@ -4,7 +4,6 @@ function Error() {
 
     return (
         <main className="bg-dark">
-
             <section className="section-error">
                 <h1>404</h1>
                 <p>

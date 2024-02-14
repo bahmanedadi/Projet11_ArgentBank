@@ -6,10 +6,7 @@ import argentBankLogo from '../../assets/image/argentBankLogo.png';
 import auth_service from '../../actions/userAction';
 
 
-/**
- * Creates Nav component
- * @returns { HTMLElement }
- */
+/***  Creates Nav component  ***/
 const Header = () => {
   const user= useSelector((state)=> state.user);
   const isAuth= useSelector((state) => state.login.isAuth)

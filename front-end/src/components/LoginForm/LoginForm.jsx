@@ -3,10 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import auth_service from "../../actions/userAction";
 
-/**
- * Creates form component
- * @returns { HTMLElement }
- */
+/***  Creates form component  ***/
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

@@ -8,9 +8,8 @@ import EditName from '../../components/EditName/EditName';
 const User = () => {
   document.title = "Argent Bank - User Page";
   const user = useSelector(state => state.user); 
-  // Assurez-vous que la clé correcte est utilisée ici
-  console.log(user)
-  const token = useSelector(state => state.login.token || localStorage.getItem('token') || null);
+  /***  Assurez-vous que la clé correcte est utilisée ici ***/
+   const token = useSelector(state => state.login.token || localStorage.getItem('token') || null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -24,7 +23,7 @@ const User = () => {
 
   return (
     <main className='main bg-dark'>
-      <EditName /> {/* Passez l'objet utilisateur au composant EditName */}
+      <EditName />
       <h2 className="sr-only">Accounts</h2>
       <Account title='Argent Bank Checking (x8349)' amount='$2,082.79' description='Available Balance' />
       <Account title='Argent Bank Savings (x6712)' amount='$10,928.42' description='Available Balance' />

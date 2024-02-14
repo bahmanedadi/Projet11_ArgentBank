@@ -13,7 +13,7 @@ const Feature=(props)  =>{
 
 Feature.propTypes = {
    data: PropTypes.object,
-    
+   
 }
 
 export default Feature;
