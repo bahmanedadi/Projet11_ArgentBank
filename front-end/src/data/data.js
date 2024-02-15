@@ -1,6 +1,6 @@
-import iconChat from "../assets/images/icon-chat.webp";
-import iconMoney from "../assets/images/icon-money.webp";
-import iconSecurity from "../assets/images/icon-security.webp";
+import iconChat from "../assets/image/icon-chat.webp";
+import iconMoney from "../assets/image/icon-money.webp";
+import iconSecurity from "../assets/image/icon-security.webp";
 
 export const dataFeatures = [
     {

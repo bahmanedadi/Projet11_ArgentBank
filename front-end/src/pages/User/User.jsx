@@ -2,25 +2,26 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Account from '../../components/Account/Account';
-import auth_service from '../../actions/userAction';
+import auth_service from '../../Redux/services/apiServices';
+
 import EditName from '../../components/EditName/EditName';
-
 const User = () => {
-  document.title = "Argent Bank - User Page";
-  const user = useSelector(state => state.user); 
-  /***  Assurez-vous que la clé correcte est utilisée ici ***/
-  const token = useSelector(state => state.login.token !== null ? state.login.token : localStorage.getItem('token') !== null ? localStorage.getItem('token') : null);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+    document.title = "Argent Bank - User Page";
+    const user = useSelector(state => state.user);
+    console.log(user)
+    // Sélectionnez les données de l'utilisateur depuis le state Redux
+    const token = useSelector(state => state.login.token !== null ? state.login.token : localStorage.getItem('token') !== null ? localStorage.getItem('token') : null);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(auth_service.userProfile(token));
-    if (token === null) {
-      navigate('/');
-      sessionStorage.clear();
-    }
-  }, [token, dispatch, navigate]);
 
+    useEffect(() => {
+        dispatch(auth_service.userProfile(token));
+        if (token === null) {
+            navigate('/');
+            sessionStorage.clear();
+        }
+    }, [token, dispatch, navigate]);
   return (
     <main className='main bg-dark'>
       <EditName />

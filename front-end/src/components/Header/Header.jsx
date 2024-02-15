@@ -1,30 +1,31 @@
 import React from 'react';
-import { logoClick } from '../../actions/loginAction';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import argentBankLogo from '../../assets/image/argentBankLogo.png';
-import auth_service from '../../actions/userAction';
+import auth_service from '../../Redux/services/apiServices';
+import { logoClick } from '../../Redux/actions/loginAction';
 
 
-/***  Creates Nav component  ***/
 const Header = () => {
-  const isAuth = useSelector((state) => state.login.isAuth)
-  const userName = useSelector(state => state.user.userName)
+  //const user = useSelector(state => state.user); // Assurez-vous que vous extrayez correctement les données de l'utilisateur
+  const isAuth = useSelector(state => state.login.isAuth)
+  const userName = useSelector(state => state.user.userName);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+ 
   const onLogout = () => {
     dispatch(auth_service.logout());
-    navigate('/')
-  }
+    navigate('/login');
+  };
+
 
   const onLogoClick = () => {
-    dispatch(logoClick())
-  }
-
+    dispatch(logoClick());
+  };
+ 
   return (
     <nav className="main-nav">
-      <Link className="main-nav-logo" onClick={onLogoClick} to="/" >
+      <Link className="main-nav-logo" onClick={onLogoClick} to="/">
         <img
           className="main-nav-logo-image"
           src={argentBankLogo}
@@ -41,19 +42,20 @@ const Header = () => {
             </Link>
           </div>
           : isAuth === true ?
-            <div className='main-nav-items'>
-              <Link className="main-nav-item" to="/profile">
-                <i className="fa fa-user-circle"></i>
-                {userName}
-              </Link>
-              <span className="main-nav-item" onClick={onLogout}>
-                <i className="fa fa-sign-out"></i>
-                Sign Out
-              </span>
-            </div> : ""
+          <div className='main-nav-items'>
+            <Link className="main-nav-item" to="/profile">
+              <i className="fa fa-user-circle"></i>
+              {userName} {/* Assurez-vous que la clé correspond à celle dans vos données */}
+            </Link>
+            <span className="main-nav-item" onClick={onLogout}>
+              <i className="fa fa-sign-out"></i>
+              Sign Out
+            </span>
+          </div> : ""
       }
     </nav>
-  )
-}
+  );
+};
+
 
 export default Header;

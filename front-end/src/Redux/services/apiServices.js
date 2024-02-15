@@ -1,18 +1,43 @@
-import { createAction } from '@reduxjs/toolkit';
 import axios from "axios";
-import { logoutSuccess, isToken } from "../actions/loginAction";
-import { login } from '../actions/loginAction';
+import { loginFail, loginSuccess, logoutSuccess, isToken } from "../actions/loginAction";
+import { userFail, userLogout, userSuccess, userUpdateSuccess, userUpdateFail } from "../actions/userAction";
 
+
+//partie Api
 const BASE_URL = "http://localhost:3001/api/v1";
 
-/***  Actions créées avec createAction  ***/
-export const userSuccess = createAction('user/userSuccess');
-export const userFail = createAction('user/userFail');
-export const userLogout = createAction('user/userLogout');
-export const userUpdateSuccess = createAction('');
-export const userUpdateFail = createAction('user/userUpdateFail');
+/**
+ * Login function
+ * @param { String } email 
+ * @param { String } password 
+ * @param { Boolean } rememberMe 
+ * @returns { Object }
+ */
 
+// Inside your login function
+export const login = (email, password, rememberMe) => (dispatch) => {
+    axios.post(BASE_URL + "/user/login", { email, password })
+        .then((response) => {
+            const token = response.data.body.token;
+            if (!rememberMe) {
+                localStorage.setItem("token", JSON.stringify(token));
+            } else {
+                sessionStorage.setItem("token", JSON.stringify(token));
+            }
+            dispatch(loginSuccess(response.data));
+            console.log(response)
+            return response.data;
 
+        })
+        .catch((err) => {
+            dispatch(loginFail(err.response.data.message));
+        });
+};
+
+/**
+ * Get user profile
+ * @param {String} token 
+ */
 export const userProfile = (value_token) => (dispatch) => {
     const token = localStorage.getItem("token") !== null ? localStorage.getItem("token").slice(1, localStorage.getItem("token").length - 1) : value_token;
     axios.post(BASE_URL + "/user/profile", { token }, { headers: { "Authorization": `Bearer ${token}` } })
@@ -25,7 +50,12 @@ export const userProfile = (value_token) => (dispatch) => {
         });
 };
 
-/***  Update user profile  ***/
+/**
+ * Update user profile
+ * @param {String} firstName 
+ * @param {String} lastName 
+ * @param {String} token 
+ */
 
 export const updateProfile = (userName, value_token) => (dispatch) => {
     const token = localStorage.getItem("token") !== null ? localStorage.getItem("token").slice(1, localStorage.getItem("token").length - 1) : value_token;
@@ -34,10 +64,9 @@ export const updateProfile = (userName, value_token) => (dispatch) => {
         {
             headers: { "Authorization": `Bearer ${token}` }
         })
-   
         .then((res) => {
             dispatch(userUpdateSuccess(res.data))
-            console.log(res.data)
+            console.log("dattataat reponse",res.data)
         })
         .catch((err) => {
             dispatch(userUpdateFail(err.response))
@@ -45,7 +74,9 @@ export const updateProfile = (userName, value_token) => (dispatch) => {
 }
 
 
-/*** Logout function   ***/
+/**
+ * Logout function
+ */
 export const logout = () => (dispatch) => {
     sessionStorage.clear();
     localStorage.removeItem('token');
@@ -54,4 +85,5 @@ export const logout = () => (dispatch) => {
 };
 
 const auth_service = { login, userProfile, logout };
+
 export default auth_service;
