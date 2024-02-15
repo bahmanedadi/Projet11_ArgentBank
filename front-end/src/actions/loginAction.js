@@ -10,15 +10,8 @@ export const logoClick = createAction('login/logoClick');
 //partie Api
 const BASE_URL = "http://localhost:3001/api/v1";
 
-/**
- * Login function
- * @param { String } email 
- * @param { String } password 
- * @param { Boolean } rememberMe 
- * @returns { Object }
- */
+/*** Login function  ***/
 
-// Inside your login function
 export const login = (email, password, rememberMe) => (dispatch) => {
     axios.post(BASE_URL + "/user/login", { email, password })
         .then((response) => {

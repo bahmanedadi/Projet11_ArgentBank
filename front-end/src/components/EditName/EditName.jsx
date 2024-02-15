@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import auth_service, { updateProfile } from '../../actions/userAction'; // Importez updateProfile avec l'alias auth_service
+import  { updateProfile } from '../../actions/userAction'; // Importez updateProfile avec l'alias auth_service
 
 const EditName = () => {
   const firstName = useSelector((state) => state.user.firstName);
@@ -15,22 +15,23 @@ const EditName = () => {
   const submit = (e) => {
       e.preventDefault();
       /***  Utilisez directement updateProfile ici ***/
-      dispatch(updateProfile(newUserName, token)); 
+     dispatch(updateProfile(newUserName, token));
+      
        /***  Réinitialisez le champ d'entrée du nouveau nom d'utilisateur après la soumission ***/
       setNewUserName('');
       showEdit(false);
   };
+ 
 
   useEffect(() => {
-      if (token !== null) {
-          dispatch(auth_service.userProfile(token));
-      }
-  }, [token, dispatch]);
-
+      setNewUserName(userName);
+  
+}, [userName]);
 
   return (
       <div className="header">
-          <h1>{edit ? 'Edit user info' : `Welcome back ${firstName} ${lastName}`}</h1>
+          <h1>{edit ? 'Edit user info' : <>Welcome back <br /> {firstName} {lastName}</>}</h1>
+
           {
               edit ?
               <form className='edit-inputs-buttons' onSubmit={submit}>
@@ -40,7 +41,7 @@ const EditName = () => {
                   <input
                     className='edit-input'
                     onChange={(e) => { setNewUserName(e.target.value) }}
-                    placeholder={userName}
+                    placeholder={newUserName}
                     required
                   />
                 </label>

@@ -9,7 +9,7 @@ const User = () => {
   document.title = "Argent Bank - User Page";
   const user = useSelector(state => state.user); 
   /***  Assurez-vous que la clé correcte est utilisée ici ***/
-   const token = useSelector(state => state.login.token || localStorage.getItem('token') || null);
+  const token = useSelector(state => state.login.token !== null ? state.login.token : localStorage.getItem('token') !== null ? localStorage.getItem('token') : null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

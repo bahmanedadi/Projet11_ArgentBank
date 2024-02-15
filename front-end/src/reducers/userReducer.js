@@ -16,7 +16,7 @@ const userAction = createSlice({
   initialState: userState,
   reducers: {
     userSuccess: (state, action) => {
-      
+
       Object.assign(state, action.payload.body); // Mettre à jour les propriétés de l'utilisateur
       state.error = null;
     },
@@ -38,12 +38,11 @@ const userAction = createSlice({
     },
     userUpdateSuccess: (state, action) => {
       /***  Update state properties for an update success ***/
-            state.title = action.payload.body.title;
-      state.content = action.payload.body.content;
-      state.author = action.payload.body.author;
-      state.id = action.payload.body.id;
-
-      state.error = null;
+      return {
+        ...state, // Copiez d'abord toutes les propriétés de l'état actuel
+        ...action.payload.body, // Mettez à jour les propriétés de l'utilisateur
+        error: null, // Réinitialisez l'erreur à null
+      };
     },
     userUpdateFail: (state, action) => {
       /***  Update state properties for an update failure  ***/
