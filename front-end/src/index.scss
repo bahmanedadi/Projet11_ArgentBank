@@ -59,6 +59,11 @@ body {
 	background-color: #12002b;
 }
 
+.editing {
+	color: black;
+	background-color: #fff;
+}
+
 .sr-only {
 	border: 0 !important;
 	clip: rect(1px, 1px, 1px, 1px) !important;
@@ -270,6 +275,11 @@ body {
 			}
 		}
 	}
+
+	&.editing {
+		background-color: black;
+		color: white;
+	}
 }
 
 .edit-button {
@@ -281,45 +291,51 @@ body {
 }
 
 
-  .edit-inputs-buttons{
-    display: flex;
-    flex-direction: column;
-    row-gap: .5rem;
-    align-items: center;
-  }
+.edit-inputs-buttons {
+	display: flex;
+	flex-direction: column;
+	row-gap: .5rem;
+	align-items: center;
+}
 
-  .edit-inputs{
-    display: flex;
-    flex-direction:column;
-    column-gap: .5rem;
-  }
+.input-group {
+	margin-bottom: 10px;
+	/* Ajoutez l'espace souhaité entre chaque paire label-input */
+}
 
-  .edit-input{
-    border-radius: 5px;
-    border-color: #222;
-    width: 130px;
-    height: 30px;
-    padding-left: .5rem;
-    font-size: 14px;
-  }
 
-  .edit-buttons{
-    display: flex;
-    flex-direction: row;
-    column-gap: .5rem;
-  }
+.edit-inputs {
+	display: flex;
+	flex-direction: column;
+	column-gap: .5rem;
+}
 
-  .edit-button-option{
-    border-radius: 5px;
-    border-color: #00bc77;
-    text-align: center;
-    width: 100px;
-    background-color: #00bc77;
+.edit-input {
+	border-radius: 5px;
+	border-color: grey;
+	width: 130px;
+	height: 30px;
+	padding-left: .5rem;
+	font-size: 14px;
+}
+
+.edit-buttons {
+	display: flex;
+	flex-direction: row;
+	column-gap: .5rem;
+}
+
+.edit-button-option {
+	border-radius: 5px;
+	border-color: #00bc77;
+	text-align: center;
+	width: 100px;
+	background-color: #00bc77;
 	color: #fff;
-    height: 30px;
-    border: 1px solid;
-    cursor: pointer;
-  }
+	height: 30px;
+	border: 1px solid;
+	cursor: pointer;
+}
 
 .header {
 	color: #fff;
@@ -341,20 +357,25 @@ body {
 		width: 200px;
 	}
 }
-.section-error {
-    color: white;
-    padding-bottom: 20px;
-    font-weight: bold;
+.chevron-icon {
+    color: #fff;
+    font-size: 45px;
+}
 
-	
+.section-error {
+	color: white;
+	padding-bottom: 20px;
+	font-weight: bold;
+
+
 }
 
 .section-error a {
-    color: white;
-    text-decoration: none;
-    font-weight: 400;
+	color: white;
+	text-decoration: none;
+	font-weight: 400;
 }
 
 .section-error a:hover {
-    text-decoration: underline;
+	text-decoration: underline;
 }
