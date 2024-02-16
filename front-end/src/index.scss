@@ -281,7 +281,6 @@ body {
 		color: white;
 	}
 }
-
 .edit-button {
 	border-color: #00bc77;
 	background-color: #00bc77;
@@ -289,8 +288,6 @@ body {
 	font-weight: bold;
 	padding: 10px;
 }
-
-
 .edit-inputs-buttons {
 	display: flex;
 	flex-direction: column;
@@ -300,9 +297,7 @@ body {
 
 .input-group {
 	margin-bottom: 10px;
-	/* Ajoutez l'espace souhaité entre chaque paire label-input */
 }
-
 
 .edit-inputs {
 	display: flex;
@@ -341,6 +336,9 @@ body {
 	color: #fff;
 	margin-bottom: 2rem;
 }
+.editing.header {
+    color: black; /* Titre en noir lorsque le mode édition est activé */
+  }
 
 .transaction-button {
 	display: block;
@@ -357,17 +355,16 @@ body {
 		width: 200px;
 	}
 }
+
 .chevron-icon {
-    color: #fff;
-    font-size: 45px;
+	color: #fff;
+	font-size: 45px;
 }
 
 .section-error {
 	color: white;
 	padding-bottom: 20px;
 	font-weight: bold;
-
-
 }
 
 .section-error a {

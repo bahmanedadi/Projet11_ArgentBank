@@ -26,7 +26,7 @@ const submit = (e) => {
 
     return (
         <div className="header">
-            <h1>{edit ? 'Edit user info' : <>Welcome back <br /> {firstName} {lastName}</>}</h1>
+            <h1 className={`header ${edit ? 'editing' : ''}`}>{edit ? 'Edit user info' : <>Welcome back <br /> {firstName} {lastName}</>}</h1>
             {
                 edit ?
                     <form className='edit-inputs-buttons' onSubmit={submit}>

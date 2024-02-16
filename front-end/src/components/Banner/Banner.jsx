@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 function Banner() {
@@ -14,5 +13,4 @@ function Banner() {
     </div>
   );
 }
-
 export default Banner;
