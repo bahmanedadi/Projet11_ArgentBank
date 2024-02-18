@@ -304,7 +304,8 @@ body {
 
 .edit-input {
 	border-radius: 5px;
-	border-color: grey;
+    border-color: #e7e7e7;
+	background-color:#e7e7e7 ;
 	width: 130px;
 	height: 30px;
 	padding-left: .5rem;
@@ -327,6 +328,9 @@ body {
 	height: 30px;
 	border: 1px solid;
 	cursor: pointer;
+}
+input#username {
+    background-color: #fff;
 }
 
 .header {

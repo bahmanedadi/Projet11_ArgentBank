@@ -32,8 +32,8 @@ const EditName = ({ onEdit }) => {
                     <form className='edit-inputs-buttons' onSubmit={submit}>
                         <div className='edit-inputs'>
                             <div className='input-group'>
-                                <label htmlFor="user name">User name :</label>
-                                <input  className='edit-input'
+                                <label htmlFor="username">User name :</label>
+                                <input  className='edit-input' id="username"
                                     onChange={(e) => { setNewUserName(e.target.value) }}
                                     placeholder={newUserName}
                                     required

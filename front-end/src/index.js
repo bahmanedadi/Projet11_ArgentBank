@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import { Provider } from 'react-redux'
 import { store } from './Redux/store'
-import './index.scss'
+import './index.mini.css'
 
 ReactDOM.render(
   <Provider store={store}>
