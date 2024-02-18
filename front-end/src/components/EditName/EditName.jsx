@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { updateProfile } from '../../Redux/services/apiServices';
 
 
-const EditName = ({onEdit}) => {
+const EditName = ({ onEdit }) => {
     const firstName = useSelector((state) => state.user.firstName);
     const lastName = useSelector((state) => state.user.lastName);
     const userName = useSelector((state) => state.user.userName);
@@ -13,7 +13,7 @@ const EditName = ({onEdit}) => {
     const [newUserName, setNewUserName] = useState('');
 
 
-const submit = (e) => {
+    const submit = (e) => {
         e.preventDefault();
         dispatch(updateProfile(newUserName, token)); // Utilisez directement updateProfile ici
         setNewUserName('');
@@ -26,33 +26,29 @@ const submit = (e) => {
 
     return (
         <div className="header">
-            <h1 className={`header ${edit ? 'editing' : ''}`}>{edit ? 'Edit user info' : <>Welcome back <br /> {firstName} {lastName}</>}</h1>
+            <h2 className={`header ${edit ? 'editing' : ''}`}>{edit ? 'Edit user info' : <>Welcome back <br /> {firstName} {lastName}</>}</h2>
             {
                 edit ?
                     <form className='edit-inputs-buttons' onSubmit={submit}>
                         <div className='edit-inputs'>
                             <div className='input-group'>
-                                <label>
-                                    User name :
-                                    <input
-                                        className='edit-input'
-                                        onChange={(e) => { setNewUserName(e.target.value) }}
-                                        placeholder={newUserName}
-                                        required
-                                    />
-                                </label>
+                                <label htmlFor="user name">User name :</label>
+                                <input  className='edit-input'
+                                    onChange={(e) => { setNewUserName(e.target.value) }}
+                                    placeholder={newUserName}
+                                    required
+                                />
+
                             </div>
                             <div className='input-group'>
-                                <label>
-                                    First name :
-                                    <input type="text" className='edit-input' placeholder={firstName} disabled />
-                                </label>
+                                <label htmlFor="first name" > First name :  </label>
+                                <input type="text" className='edit-input' placeholder={firstName} disabled />
+
                             </div>
                             <div className='input-group'>
-                                <label>
-                                    Last name :
-                                    <input type="text" className='edit-input' placeholder={lastName} disabled />
-                                </label>
+                                <label htmlFor="last name"> Last name :</label>
+                                <input type="text" className='edit-input' placeholder={lastName} disabled />
+
                             </div>
                         </div>
                         <div className='edit-buttons'>
@@ -62,7 +58,7 @@ const submit = (e) => {
                     </form>
 
                     :
-                   <button className="edit-button" onClick={() => { showEdit(true); onEdit(true); }}>Edit Name</button>
+                    <button className="edit-button" onClick={() => { showEdit(true); onEdit(true); }}>Edit Name</button>
             }
         </div>
     )

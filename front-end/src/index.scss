@@ -1,7 +1,6 @@
 html {
 	font-family: Avenir, Helvetica, Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+	
 	text-align: center;
 	color: #2c3e50;
 }
@@ -59,10 +58,7 @@ body {
 	background-color: #12002b;
 }
 
-.editing {
-	color: black;
-	background-color: #fff;
-}
+
 
 .sr-only {
 	border: 0 !important;
@@ -293,6 +289,7 @@ body {
 	flex-direction: column;
 	row-gap: .5rem;
 	align-items: center;
+	color: black;
 }
 
 .input-group {
@@ -324,7 +321,7 @@ body {
 	border-radius: 5px;
 	border-color: #00bc77;
 	text-align: center;
-	width: 100px;
+	width: 110px;
 	background-color: #00bc77;
 	color: #fff;
 	height: 30px;
@@ -335,10 +332,13 @@ body {
 .header {
 	color: #fff;
 	margin-bottom: 2rem;
+	&.editing {
+		color: black; /* Titre en noir lorsque le mode édition est activé */
+		
+	  }
+	
 }
-.editing.header {
-    color: black; /* Titre en noir lorsque le mode édition est activé */
-  }
+
 
 .transaction-button {
 	display: block;
