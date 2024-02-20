@@ -15,7 +15,7 @@ const EditName = ({ onEdit }) => {
 
     const submit = (e) => {
         e.preventDefault();
-        dispatch(updateProfile(newUserName, token)); // Utilisez directement updateProfile ici
+        dispatch(updateProfile(newUserName, token));  
         setNewUserName('');
         showEdit(false);
         onEdit(false);
@@ -53,7 +53,7 @@ const EditName = ({ onEdit }) => {
                         </div>
                         <div className='edit-buttons'>
                             <button className='edit-button-option' type='submit'>Save</button>
-                            <button className='edit-button-option' onClick={() => { showEdit(false) }}>Cancel</button>
+                            <button className='edit-button-option' onClick={() => { showEdit(false);onEdit(false);}}>Cancel</button>
                         </div>
                     </form>
 

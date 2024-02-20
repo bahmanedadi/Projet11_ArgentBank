@@ -2,7 +2,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 
-// Initial user state
+/***  Initial user state ***/
 const userState = {
     firstName: null,
     title: null,
@@ -12,7 +12,7 @@ const userState = {
     error: null,
 };
 
-// User slice
+/***  User slice ***/
 const userSlice = createSlice({
     name: "user",
     initialState: userState,
@@ -33,8 +33,6 @@ const userSlice = createSlice({
             return {
              ...state, // Copiez d'abord toutes les propriétés de l'état actuel
             ...action.payload.body, // Mettez à jour les propriétés de l'utilisateur
-            // state.userName = action.payload.userName,
-              //Object.assign(state, action.payload.body),
               error: null, // Réinitialisez l'erreur à null
             };
           },
