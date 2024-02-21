@@ -3,7 +3,7 @@ import { loginFail, loginSuccess, logoutSuccess, isToken } from "../actions/logi
 import { userFail, userLogout, userSuccess, userUpdateSuccess, userUpdateFail } from "../actions/userAction";
 
 
-//partie Api
+/*** partie Api ***/
 const BASE_URL = "http://localhost:3001/api/v1";
 
 /**

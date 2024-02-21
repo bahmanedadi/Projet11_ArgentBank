@@ -14,10 +14,8 @@ function Home() {
                     return <Feature data={feature} key={index} />
                 })
                 }
-               
             </section>
         </div>
     );
 }
-
 export default Home;

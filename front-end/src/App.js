@@ -8,8 +8,10 @@ import Footer from './components/Footer/Footer';
 import User from "./pages/User/User";
 import Error from "./pages/Error/Error";
 
+
 const App = () => {
   const isAuth = useSelector(state => state.login.isAuth);
+
 
   const PrivateRoute = ({ element, path }) => {
     return isAuth ? (
@@ -18,6 +20,7 @@ const App = () => {
       <Navigate to="/login" state={{ from: path }} />
     );
   };
+
 
   return (
     <BrowserRouter>
@@ -35,5 +38,6 @@ const App = () => {
     </BrowserRouter>
   );
 };
+
 
 export default App;

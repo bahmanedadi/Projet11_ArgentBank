@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import auth_service from '../../Redux/services/apiServices';
 
-
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,13 +11,13 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const token = useSelector((state) => state.login.token);
   const error = useSelector((state) => state.login.error);
-
-  // useEffect pour pré-remplir les champs d'e-mail et de mot de passe après la déconnexion
+  const isAuth = useSelector((state) => state.login.isAuth);
+  /***  useEffect pour pré-remplir les champs d'e-mail et de mot de passe après la déconnexion ***/
   useEffect(() => {
     const savedEmail = localStorage.getItem("userEmail");
     const savedPassword = localStorage.getItem("userPassword");
 
-    // Vérifie si la case "Remember me" était cochée lors de la connexion précédente
+    /*** Vérifie si la case "Remember me" était cochée lors de la connexion précédente ***/
     const rememberMeChecked = savedEmail && savedPassword;
 
     /***  Si la case "Remember me" était cochée, pré-remplit les champs d'e-mail et de mot de passe ***/
@@ -26,13 +25,21 @@ const LoginForm = () => {
       setEmail(savedEmail);
       setPassword(savedPassword);
       setRememberMe(true); 
+    
+     
     } else {
       /***  Sinon, réinitialise les champs d'e-mail et de mot de passe ***/
       setEmail("");
       setPassword("");
       setRememberMe(false);
     }
-  }, [token]); /*** Exécuter lorsque le token change, c'est-à-dire après la déconnexion ***/
+    if (isAuth) {
+      navigate('/profile');
+  } else {
+      console.log("User not authenticated.");
+     /*** Traiter éventuellement le cas où l'utilisateur n'est pas authentifié" ***/
+  }
+  }, [token,navigate,isAuth]); /*** Exécuter lorsque le token change, c'est-à-dire après la déconnexion ***/
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -43,19 +50,14 @@ const LoginForm = () => {
       ? localStorage.setItem("userPassword", password)
       : localStorage.removeItem("userPassword");
     dispatch(auth_service.login(email, password, rememberMe));
+     
   };
 
   const handleRememberMe = () => {
     setRememberMe(!rememberMe);
   };
 
-  useEffect(() => {
-    if (token !== null || localStorage.getItem("token") !== null) {
-      navigate("/profile");
-    }
-  }, [token, navigate]);
-
-  return (
+   return (
     <section className="sign-in-content">
       <i className="fa fa-user-circle sign-in-icon"></i>
       <h1>Sign In</h1>
@@ -87,7 +89,7 @@ const LoginForm = () => {
           />
           <label htmlFor="remember-me">Remember me</label>
         </div>
-        <button className="sign-in-button" type="submit">
+        <button className="sign-in-button">
           Sign In
         </button>
         {error !== null ? <label className="error">{error}</label> : ""}

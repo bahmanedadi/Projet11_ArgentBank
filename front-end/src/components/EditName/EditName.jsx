@@ -12,7 +12,6 @@ const EditName = ({ onEdit }) => {
     const token = useSelector((state) => state.login.token);
     const [newUserName, setNewUserName] = useState('');
 
-
     const submit = (e) => {
         e.preventDefault();
         dispatch(updateProfile(newUserName, token));  
@@ -38,7 +37,7 @@ const EditName = ({ onEdit }) => {
                                     placeholder={newUserName}
                                     required
                                 />
-
+                                
                             </div>
                             <div className='input-group'>
                                 <label htmlFor="first name" > First name :  </label>
@@ -53,7 +52,7 @@ const EditName = ({ onEdit }) => {
                         </div>
                         <div className='edit-buttons'>
                             <button className='edit-button-option' type='submit'>Save</button>
-                            <button className='edit-button-option' onClick={() => { showEdit(false);onEdit(false);}}>Cancel</button>
+                            <button className='edit-button-option' onClick={() => {  setNewUserName(userName);showEdit(false);onEdit(false);}}>Cancel</button>
                         </div>
                     </form>
 
@@ -63,6 +62,5 @@ const EditName = ({ onEdit }) => {
         </div>
     )
 }
-
 
 export default EditName;

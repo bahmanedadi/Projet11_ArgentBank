@@ -11,7 +11,6 @@ function Error() {
                 </p>
                 <Link to='/'>Retourner à la page d'accueil</Link>
             </section>
-
         </main>
     )
 }
