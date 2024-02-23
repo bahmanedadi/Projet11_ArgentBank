@@ -11,8 +11,6 @@ import Error from "./pages/Error/Error";
 
 const App = () => {
   const isAuth = useSelector(state => state.login.isAuth);
-
-
   const PrivateRoute = ({ element, path }) => {
     return isAuth ? (
       element
@@ -20,8 +18,6 @@ const App = () => {
       <Navigate to="/login" state={{ from: path }} />
     );
   };
-
-
   return (
     <BrowserRouter>
       <Header />
@@ -38,6 +34,4 @@ const App = () => {
     </BrowserRouter>
   );
 };
-
-
 export default App;

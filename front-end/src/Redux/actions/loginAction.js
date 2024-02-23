@@ -1,4 +1,3 @@
-
 import { createAction } from '@reduxjs/toolkit';
 
 export const loginSuccess = createAction('login/loginSuccess');

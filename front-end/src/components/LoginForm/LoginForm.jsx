@@ -16,17 +16,13 @@ const LoginForm = () => {
   useEffect(() => {
     const savedEmail = localStorage.getItem("userEmail");
     const savedPassword = localStorage.getItem("userPassword");
-
     /*** Vérifie si la case "Remember me" était cochée lors de la connexion précédente ***/
     const rememberMeChecked = savedEmail && savedPassword;
-
     /***  Si la case "Remember me" était cochée, pré-remplit les champs d'e-mail et de mot de passe ***/
     if (rememberMeChecked) {
       setEmail(savedEmail);
       setPassword(savedPassword);
-      setRememberMe(true); 
-    
-     
+      setRememberMe(true);
     } else {
       /***  Sinon, réinitialise les champs d'e-mail et de mot de passe ***/
       setEmail("");
@@ -35,11 +31,11 @@ const LoginForm = () => {
     }
     if (isAuth) {
       navigate('/profile');
-  } else {
+    } else {
       console.log("User not authenticated.");
-     /*** Traiter éventuellement le cas où l'utilisateur n'est pas authentifié" ***/
-  }
-  }, [token,navigate,isAuth]); /*** Exécuter lorsque le token change, c'est-à-dire après la déconnexion ***/
+      /*** Traiter éventuellement le cas où l'utilisateur n'est pas authentifié" ***/
+    }
+  }, [token, navigate, isAuth]); /*** Exécuter lorsque le token change, c'est-à-dire après la déconnexion ***/
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -50,14 +46,13 @@ const LoginForm = () => {
       ? localStorage.setItem("userPassword", password)
       : localStorage.removeItem("userPassword");
     dispatch(auth_service.login(email, password, rememberMe));
-     
   };
 
   const handleRememberMe = () => {
     setRememberMe(!rememberMe);
   };
 
-   return (
+  return (
     <section className="sign-in-content">
       <i className="fa fa-user-circle sign-in-icon"></i>
       <h1>Sign In</h1>

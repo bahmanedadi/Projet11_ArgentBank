@@ -1,13 +1,8 @@
-// Exemple d'importation de Redux Toolkit
 import { createSlice } from '@reduxjs/toolkit';
-
 
 /***  Initial user state ***/
 const userState = {
     firstName: null,
-    title: null,
-    content: null,
-    author: null,
     id: null,
     error: null,
 };
@@ -20,6 +15,7 @@ const userSlice = createSlice({
         userSuccess: (state, action) => {
             Object.assign(state, action.payload.body); // Mettre à jour les propriétés de l'utilisateur
             state.error = null;
+            console.log(state, action.payload.body)
         },
         userFail: (state, action) => {
             state.error = action.payload.message;
@@ -39,7 +35,6 @@ const userSlice = createSlice({
         userUpdateFail: (state, action) => {
             state.error = action.payload.message;
         },
-        
        
     },
 });

@@ -52,10 +52,9 @@ const EditName = ({ onEdit }) => {
                         </div>
                         <div className='edit-buttons'>
                             <button className='edit-button-option' type='submit'>Save</button>
-                            <button className='edit-button-option' onClick={() => {  setNewUserName(userName);showEdit(false);onEdit(false);}}>Cancel</button>
+                            <button className='edit-button-option' onClick={() => {setNewUserName(userName);showEdit(false);onEdit(false);}}>Cancel</button>
                         </div>
                     </form>
-
                     :
                     <button className="edit-button" onClick={() => { showEdit(true); onEdit(true); }}>Edit Name</button>
             }

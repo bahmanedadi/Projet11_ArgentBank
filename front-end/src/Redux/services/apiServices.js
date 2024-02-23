@@ -6,15 +6,7 @@ import { userFail, userLogout, userSuccess, userUpdateSuccess, userUpdateFail } 
 /*** partie Api ***/
 const BASE_URL = "http://localhost:3001/api/v1";
 
-/**
- * Login function
- * @param { String } email 
- * @param { String } password 
- * @param { Boolean } rememberMe 
- * @returns { Object }
- */
-
-// Inside your login function
+/***  Inside your login function ***/
 export const login = (email, password, rememberMe) => (dispatch) => {
     axios.post(BASE_URL + "/user/login", { email, password })
         .then((response) => {
@@ -34,12 +26,9 @@ export const login = (email, password, rememberMe) => (dispatch) => {
         });
 };
 
-/**
- * Get user profile
- * @param {String} token 
- */
-export const userProfile = (value_token) => (dispatch) => {
-    const token = localStorage.getItem("token") !== null ? localStorage.getItem("token").slice(1, localStorage.getItem("token").length - 1) : value_token;
+/***  Get user profile  ***/
+ export const userProfile = (value_token) => (dispatch) => {
+    const token =  localStorage.getItem("token") !== null ? localStorage.getItem("token").slice(1, localStorage.getItem("token").length - 1) : value_token;
     axios.post(BASE_URL + "/user/profile", { token }, { headers: { "Authorization": `Bearer ${token}` } })
         .then((response) => {
             dispatch(userSuccess(response.data));
@@ -50,13 +39,7 @@ export const userProfile = (value_token) => (dispatch) => {
         });
 };
 
-/**
- * Update user profile
- * @param {String} firstName 
- * @param {String} lastName 
- * @param {String} token 
- */
-
+/*** Update user profile ***/
 export const updateProfile = (userName, value_token) => (dispatch) => {
     const token = localStorage.getItem("token") !== null ? localStorage.getItem("token").slice(1, localStorage.getItem("token").length - 1) : value_token;
     axios.put(BASE_URL + "/user/profile",
@@ -74,9 +57,7 @@ export const updateProfile = (userName, value_token) => (dispatch) => {
 }
 
 
-/**
- * Logout function
- */
+/***  Logout function ***/
 export const logout = () => (dispatch) => {
     sessionStorage.clear();
     localStorage.removeItem('token');
@@ -85,5 +66,4 @@ export const logout = () => (dispatch) => {
 };
 
 const auth_service = { login, userProfile, logout };
-
 export default auth_service;
